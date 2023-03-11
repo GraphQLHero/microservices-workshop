@@ -1,6 +1,4 @@
-# Turborepo kitchen sink starter
-
-This is an official starter Turborepo with multiple meta-frameworks all working in harmony and sharing packages.
+# Microservices Workshop
 
 ## What's inside?
 
@@ -8,12 +6,10 @@ This Turborepo includes the following packages and apps:
 
 ### Apps and Packages
 
-- `api`: an [Express](https://expressjs.com/) server
-- `storefront`: a [Next.js](https://nextjs.org/) app
-- `admin`: a [Vite](https://vitejs.dev/) single page app
-- `blog`: a [Remix](https://remix.run/) blog
+- `api-gateway`: an [Express](https://expressjs.com/) server
+- `frontend`: a [Next.js](https://nextjs.org/) app
 - `logger`: isomorphic logger (a small wrapper around console.log)
-- `ui`: a dummy React UI library (which contains a single `<CounterButton>` component)
+- `ui`: a dummy React UI library
 - `scripts`: Jest and ESLint configurations
 - `tsconfig`: tsconfig.json;s used throughout the monorepo
 
@@ -33,8 +29,8 @@ This Turborepo has some additional tools already setup for you:
 Run the following command:
 
 ```sh
-npx degit vercel/turbo/examples/kitchen-sink kitchen-sink
-cd kitchen-sink
+git clone git@github.com:GraphQLHero/microservices-workshop.git microservices-workshop
+cd microservices-workshop
 pnpm install
 git init . && git add . && git commit -m "Init"
 ```
