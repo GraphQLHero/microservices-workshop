@@ -7,6 +7,7 @@ This Turborepo includes the following packages and apps:
 ### Apps and Packages
 
 - `api-gateway`: an [Express](https://expressjs.com/) server
+- `country-guesser`: an [Express](https://expressjs.com/) server
 - `frontend`: a [Next.js](https://nextjs.org/) app
 - `logger`: isomorphic logger (a small wrapper around console.log)
 - `ui`: a dummy React UI library
