@@ -9,3 +9,5 @@ const server = createServer();
 server.listen(port, () => {
   log(`country-guesser running on http://localhost:${port}`);
 });
+
+module.exports = server;
