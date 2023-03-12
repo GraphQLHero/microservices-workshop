@@ -14,10 +14,12 @@ const getFlagEmoji = (countryCode: string) => {
 export default function Store() {
   log('Hey! This is Home.');
   const [countryCode, setCountryCode] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+
   return (
     <div className="container">
       <Head>
-        <title>Store | Kitchen Sink</title>
+        <title>Microservices Workshop</title>
       </Head>
       <h1 className="title">
         Microservices <br />
@@ -26,15 +28,17 @@ export default function Store() {
       <div>
         <form
           className="form"
-          onSubmit={async (e) => {
+          onSubmit={async (
+            e: React.FormEvent<HTMLFormElement> & {
+              target: { search: { value: string } };
+            }
+          ) => {
             e.preventDefault();
             setCountryCode(null);
+            setIsLoading(true);
 
-            // Get the value of the input field
-            // @ts-expect-error search is not defined on the target
-            const search = e.target.search?.value;
+            const search = e.target.search.value;
 
-            alert(`Searching for ${search}`);
             const response = await fetch(
               `${process.env.NEXT_PUBLIC_API_GATEWAY_URL}/graphql`,
               {
@@ -46,6 +50,7 @@ export default function Store() {
                 },
               }
             );
+            setIsLoading(false);
             const { data } = await response.json();
             setCountryCode(data.searchCountry);
           }}
@@ -53,8 +58,9 @@ export default function Store() {
           <input
             type="text"
             name="search"
-            placeholder="Type something and I guess the country…"
+            placeholder="Entre le nom d'une ville et je devine le pays…"
           />
+          {isLoading ? 'Chargement…' : null}
           {countryCode ? getFlagEmoji(countryCode) : null}
         </form>
       </div>
