@@ -1,10 +1,16 @@
 {
   "$schema": "https://turbo.build/schema.json",
   "globalDependencies": ["**/.env.*local"],
-  "globalEnv": ["PORT", "OPENAI_API_KEY", "COUNTRY_GUESSER_URL"],
+  "globalEnv": [
+    "PORT",
+    "OPENAI_API_KEY",
+    "COUNTRY_GUESSER_URL",
+    "NEXT_PUBLIC_API_GATEWAY_URL"
+  ],
   "pipeline": {
     "build": {
-      "outputs": [".next/**"]
+      "outputs": ["dist/**", ".next/**"],
+      "dependsOn": ["^build"]
     },
     "test": {
       "outputs": ["coverage/**"],
