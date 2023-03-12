@@ -4,6 +4,8 @@
   "private": true,
   "scripts": {
     "build": "tsup src/index.ts --format cjs --out-dir dist",
+    "//build:vercel": "See https://vercel.com/guides/using-express-with-vercel#standalone-express",
+    "build:vercel": "yarn run build && mkdir -p api && cp dist/index.js api/index.js",
     "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist",
     "dev": "tsup src/index.ts --format cjs --watch --onSuccess \"node dist/index.js\"",
     "lint": "tsc --noEmit && eslint \"src/**/*.ts*\"",
