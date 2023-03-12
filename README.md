@@ -6,9 +6,9 @@ This Turborepo includes the following packages and apps:
 
 ### Apps and Packages
 
-- `api-gateway`: a [Next.js 13](https://beta.nextjs.org/docs) GraphQL server
 - `country-guesser`: a [Next.js 13](https://beta.nextjs.org/docs) server (https://microservices-workshop-country-guesser.vercel.app)
-- `frontend`: a [Next.js 13](https://beta.nextjs.org/docs) app
+- `api-gateway`: a [Next.js 13](https://beta.nextjs.org/docs) GraphQL API Gateway
+- `frontend`: a [Next.js 13](https://beta.nextjs.org/docs) frontend app
 - `logger`: isomorphic logger (a small wrapper around console.log)
 - `ui`: a dummy React UI library
 - `scripts`: Jest and ESLint configurations
@@ -33,5 +33,5 @@ Run the following command:
 git clone git@github.com:GraphQLHero/microservices-workshop.git microservices-workshop
 cd microservices-workshop
 pnpm install
-git init . && git add . && git commit -m "Init"
+pnpm dev
 ```
