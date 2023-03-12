@@ -1,11 +1,15 @@
 {
+  "exclude": [
+    "node_modules"
+  ],
+  "extends": "tsconfig/nextjs.json",
   "compilerOptions": {
-    "lib": ["ES2015"],
-    "module": "CommonJS",
-    "outDir": "./dist",
-    "rootDir": "./src"
+    "rootDir": "src",
+    "outDir": "dist"
   },
-  "exclude": ["node_modules"],
-  "extends": "tsconfig/base.json",
-  "include": ["src"]
+  "include": [
+    "src",
+    "next-env.d.ts",
+    ".next/types/**/*.ts"
+  ]
 }
