@@ -1,3 +1,4 @@
+import { log } from 'logger';
 import { Configuration, OpenAIApi } from 'openai';
 
 export default async function searchWithOpenAi(search: string) {
@@ -22,7 +23,7 @@ export default async function searchWithOpenAi(search: string) {
   });
 
   const valueFromOpenAi = response.data.choices[0].text;
-  console.log({ valueFromOpenAi });
+  log({ valueFromOpenAi });
 
   return valueFromOpenAi?.replace(/[^a-zA-Z ]/g, '');
 }

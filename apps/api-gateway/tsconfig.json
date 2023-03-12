@@ -1,11 +1,9 @@
 {
-  "compilerOptions": {
-    "lib": ["ES2015"],
-    "module": "CommonJS",
-    "outDir": "./dist",
-    "rootDir": "./src"
-  },
   "exclude": ["node_modules"],
-  "extends": "tsconfig/base.json",
-  "include": ["src"]
+  "extends": "tsconfig/nextjs.json",
+  "compilerOptions": {
+    "rootDir": "src",
+    "outDir": "dist"
+  },
+  "include": ["src", "next-env.d.ts", ".next/types/**/*.ts"]
 }
