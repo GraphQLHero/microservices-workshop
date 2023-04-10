@@ -10,6 +10,7 @@
     "start": "next start "
   },
   "dependencies": {
+    "@heroicons/react": "^2.0.17",
     "logger": "workspace:*",
     "next": "^13.2.4",
     "react": "^18.2.0",

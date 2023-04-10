@@ -1,7 +1,7 @@
-import { log } from 'logger';
 import Head from 'next/head';
 import { useState } from 'react';
 import { NewTabLink } from 'ui';
+import fetchApiGateway from '../fetchApiGateway';
 
 const getFlagEmoji = (countryCode: string) => {
   const codePoints = countryCode
@@ -12,7 +12,6 @@ const getFlagEmoji = (countryCode: string) => {
 };
 
 export default function Store() {
-  log('Hey! This is Home.');
   const [countryCode, setCountryCode] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
@@ -39,26 +38,18 @@ export default function Store() {
 
             const search = e.target.search.value;
 
-            const response = await fetch(
-              `${process.env.NEXT_PUBLIC_API_GATEWAY_URL}/graphql`,
-              {
-                method: 'POST',
-                body: `query { searchCountry(search: "${search}") }`,
-                headers: {
-                  Accept: `application/json`,
-                  'Content-Type': 'application/graphql',
-                },
-              }
+            // TODO add TS types on GraphQL frontend
+            const data = await fetchApiGateway(
+              `query { searchCountry(search: "${search}") }`
             );
             setIsLoading(false);
-            const { data } = await response.json();
             setCountryCode(data.searchCountry);
           }}
         >
           <input
             type="text"
             name="search"
-            placeholder="Entre le nom d'une ville et je devine le pays…"
+            placeholder="Entre du texte et je trouve le pays associé…"
           />
           {isLoading ? 'Chargement…' : null}
           {countryCode ? getFlagEmoji(countryCode) : null}
