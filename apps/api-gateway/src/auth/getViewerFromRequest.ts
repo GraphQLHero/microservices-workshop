@@ -11,7 +11,7 @@ export default async function getViewerFromRequest(
   request: NextRequest
 ): Promise<Viewer | null> {
   const jwt = request.cookies.get('jwt');
-  if (!jwt) {
+  if (!jwt?.value) {
     console.info('No JWT found in cookies');
     return null;
   }
@@ -22,7 +22,7 @@ export default async function getViewerFromRequest(
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({
-      token: jwt,
+      token: jwt.value,
     }),
   });
   if (response.status === 401) {
@@ -30,8 +30,11 @@ export default async function getViewerFromRequest(
     return null;
   }
 
-  const data = await response.json();
-  console.log({ data });
-
-  return data?.decoded ?? null;
+  try {
+    const data = await response.json();
+    return data?.decoded ?? null;
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
 }

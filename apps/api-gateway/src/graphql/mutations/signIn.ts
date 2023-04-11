@@ -42,7 +42,6 @@ builder.relayMutationField(
 
       // We set the jwt token in the cookies for our frontend
       const jwt = data.token;
-      // @ts-expect-error need to fix ctx.request type
       await ctx.request.cookieStore?.set('jwt', jwt);
 
       return { errorCode: null };

@@ -28,7 +28,12 @@ export default function Example() {
               const data = await fetchApiGateway(
                 `mutation { signIn(input: {username: "${e.target.username.value}",password: "${e.target.password.value}"}) { errorCode } }`
               );
-              alert(JSON.stringify(data, null, 2));
+              if (data?.signIn?.errorCode) {
+                alert(data.signIn.errorCode);
+                return;
+              }
+
+              window.location.href = '/';
             }}
           >
             <div className="-space-y-px rounded-md shadow-sm">
