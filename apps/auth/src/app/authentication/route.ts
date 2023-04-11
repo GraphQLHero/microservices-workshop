@@ -7,8 +7,9 @@ export async function POST(request: Request) {
 
   const token = jsonwebtoken.sign(
     {
-      sub: '1234567890',
+      id: '1234567890',
       name: 'John Doe',
+      email: 'johndoe@gmail.com',
       admin: true,
     },
     process.env.JWT_SECRET as string,

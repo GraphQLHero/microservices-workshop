@@ -1,7 +1,10 @@
 import { NextRequest } from 'next/server';
 
-type Viewer = {
+export type Viewer = {
   id: string;
+  email: string;
+  name: string;
+  admin: boolean;
 };
 
 export default async function getViewerFromRequest(
@@ -9,6 +12,7 @@ export default async function getViewerFromRequest(
 ): Promise<Viewer | null> {
   const jwt = request.cookies.get('jwt');
   if (!jwt) {
+    console.info('No JWT found in cookies');
     return null;
   }
 
@@ -22,10 +26,12 @@ export default async function getViewerFromRequest(
     }),
   });
   if (response.status === 401) {
+    console.warn('Invalid JWT found in cookies');
     return null;
   }
 
   const data = await response.json();
+  console.log({ data });
 
   return data?.decoded ?? null;
 }

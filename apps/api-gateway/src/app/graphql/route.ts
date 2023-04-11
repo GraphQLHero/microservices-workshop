@@ -3,7 +3,7 @@ import { createYoga } from 'graphql-yoga';
 import { useCookies } from '@whatwg-node/server-plugin-cookies';
 import schema from '../../graphql/schema';
 import { NextRequest } from 'next/server';
-import getViewerFromRequest from '../../auth/getViewerFromRequest';
+import getViewerFromRequest, { Viewer } from '../../auth/getViewerFromRequest';
 
 const yoga = createYoga({
   graphqlEndpoint: '/graphql',
@@ -59,8 +59,8 @@ export async function GET(request: Request) {
 // Executes GraphQL requests
 export async function POST(request: NextRequest) {
   // The GraphQL context is passed to all resolvers
-  const context = {
-    viewer: getViewerFromRequest(request),
+  const context: { viewer: Viewer | null } = {
+    viewer: await getViewerFromRequest(request),
   };
 
   return handleRequest(request, context);
