@@ -1,9 +1,11 @@
 // https://beta.nextjs.org/docs/routing/route-handlers
 import { createYoga } from 'graphql-yoga';
-import { useCookies } from '@whatwg-node/server-plugin-cookies';
 import schema from '../../graphql/schema';
-import { NextRequest } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 import getViewerFromRequest, { Viewer } from '../../auth/getViewerFromRequest';
+import { SESSION_COOKIE } from '../../config';
+import { GraphQLContext } from '../../graphql/builder';
+import { useCookies } from '@whatwg-node/server-plugin-cookies';
 
 const yoga = createYoga({
   graphqlEndpoint: '/graphql',
@@ -25,36 +27,51 @@ const yoga = createYoga({
   plugins: [useCookies()],
 });
 
-const handleRequest = async (request: Request, context: any) => {
+const handleRequest = async (request: NextRequest, context: GraphQLContext) => {
   // The GraphQL context is passed to all resolvers
-  const response = await yoga.handleRequest(request, context);
+  const yogaResponse = await yoga.handleRequest(request, context);
 
   const headersObj: any = {};
-  response.headers.forEach((value, key) => {
+  yogaResponse.headers.forEach((value, key) => {
     headersObj[key] = value;
   });
 
-  return new Response(response.body, {
-    status: response.status,
+  const response = new NextResponse(yogaResponse.body, {
+    status: yogaResponse.status,
     headers: headersObj,
   });
+
+  console.log({ headersObj });
+  // if (context.sessionCookie) {
+  //   console.log('Setting session cookie: ', context.sessionCookie);
+  //   response.cookies.set(SESSION_COOKIE, 'VALUE', {
+  //     httpOnly: true,
+  //     // domain: null,
+  //     // expires: Date.now() + 24 * 60 * 60 * 1000,
+  //     secure: true,
+  //     sameSite: 'none',
+  //   });
+  // }
+
+  return response;
 };
 
 // Preflight requests
-export async function OPTIONS(request: Request) {
+export async function OPTIONS(request: NextRequest) {
   return handleRequest(request, {});
 }
 
 // Renders GraphiQL
-export async function GET(request: Request) {
+export async function GET(request: NextRequest) {
   return handleRequest(request, {});
 }
 
 // Executes GraphQL requests
 export async function POST(request: NextRequest) {
   // The GraphQL context is passed to all resolvers
-  const context: { viewer: Viewer | null } = {
+  const context = {
     viewer: await getViewerFromRequest(request),
+    request,
   };
 
   return handleRequest(request, context);
