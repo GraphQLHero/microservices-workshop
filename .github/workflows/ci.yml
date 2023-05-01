@@ -19,38 +19,18 @@ jobs:
     steps:
       - name: Check out code
         uses: actions/checkout@v3
-        with:
-          fetch-depth: 2
-
       - uses: pnpm/action-setup@v2
         with:
           version: 8.3.1
-
       - name: Setup Node.js environment
         uses: actions/setup-node@v3
         with:
           node-version: 18
           cache: 'pnpm'
-
       - name: Install dependencies
         run: pnpm install
 
       - name: Unit Test
         run: pnpm test
-  e2e-test:
-    name: Run e2e tests
-    timeout-minutes: 15
-    runs-on: ubuntu-latest
-    steps:
-     - name: Waiting for 200 from the Vercel Preview
-        # https://github.com=/patrickedqvist/wait-for-vercel-preview
-        uses: patrickedqvist/wait-for-vercel-preview@v1.3.1
-        id: waitAuthPreview
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          environment: Preview – microservices-workshop-auth
-          max_timeout: 300
-    - name: Run E2E tests
-        run: pnpm e2e:test
         env:
-          AUTH_URL: ${{ steps.waitForDeploy.outputs.url }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}

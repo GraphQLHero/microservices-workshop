@@ -5,6 +5,8 @@ import fetch from 'cross-fetch';
 
 describe('e2e', () => {
   it('does not verify a random token', async () => {
+    const url = `${process.env.AUTH_URL}/verify`;
+    console.log({ url });
     const response = await fetch(`${process.env.AUTH_URL}/verify`, {
       method: 'POST',
       headers: {
