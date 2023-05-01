@@ -2,7 +2,6 @@
   "$schema": "https://turbo.build/schema.json",
   "globalDependencies": ["**/.env.*local"],
   "globalEnv": [
-    "NODE_ENV",
     "PORT",
     "OPENAI_API_KEY",
     "COUNTRY_GUESSER_URL",
