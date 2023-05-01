@@ -42,7 +42,16 @@ builder.relayMutationField(
 
       // We set the jwt token in the cookies for our frontend
       const jwt = data.token;
-      await ctx.request.cookieStore?.set(SESSION_COOKIE, jwt);
+      await ctx.request.cookieStore?.set(
+        {
+          name: SESSION_COOKIE,
+          domain: '',
+          expires: 36000,
+          secure: true,
+          sameSite: 'none',
+        },
+        jwt
+      );
 
       return { errorCode: null };
     },
