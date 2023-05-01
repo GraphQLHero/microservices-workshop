@@ -41,16 +41,9 @@ builder.relayMutationField(
       const data = await response.json();
 
       // We set the jwt token in the cookies for our frontend
-      await ctx.request?.cookieStore?.set({
-        name: SESSION_COOKIE,
-        value: data.token,
-        path: '/',
-        sameSite: 'none',
-        secure: true,
-        domain:
-          process.env.NODE_ENV === 'development' ? 'localhost' : 'vercel.app',
-        expires: new Date('now + 3h'),
-      });
+      // /!\ We need sameSite=none and secure=true for the cookie to be set
+      // See `handleRequest`
+      await ctx.request?.cookieStore?.set(SESSION_COOKIE, data.token);
 
       return { errorCode: null };
     },

@@ -41,17 +41,21 @@ const handleRequest = async (request: NextRequest, context: GraphQLContext) => {
     headers: headersObj,
   });
 
-  console.log({ headersObj });
-  // if (context.sessionCookie) {
-  //   console.log('Setting session cookie: ', context.sessionCookie);
-  //   response.cookies.set(SESSION_COOKIE, 'VALUE', {
-  //     httpOnly: true,
-  //     // domain: null,
-  //     // expires: Date.now() + 24 * 60 * 60 * 1000,
-  //     secure: true,
-  //     sameSite: 'none',
-  //   });
-  // }
+  // Patch to allow a sameSite "none" cookie to be set
+  const sessionCookie = (
+    await context.request?.cookieStore?.get(SESSION_COOKIE)
+  )?.value;
+  if (sessionCookie) {
+    console.log('Setting session cookie: ', sessionCookie);
+    response.cookies.set(SESSION_COOKIE, sessionCookie, {
+      httpOnly: true,
+      domain:
+        process.env.NODE_ENV === 'development' ? 'localhost' : 'vercel.app',
+      expires: new Date(Date.now() + 24 * 60 * 60 * 1000),
+      secure: true,
+      sameSite: 'none',
+    });
+  }
 
   return response;
 };

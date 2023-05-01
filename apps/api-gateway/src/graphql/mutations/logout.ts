@@ -19,7 +19,7 @@ builder.relayMutationField(
   },
   {
     resolve: async (root, { input }, ctx) => {
-      await ctx.request.cookies.delete(SESSION_COOKIE);
+      await ctx.request?.cookies?.delete(SESSION_COOKIE);
 
       return { errorCode: null };
     },
