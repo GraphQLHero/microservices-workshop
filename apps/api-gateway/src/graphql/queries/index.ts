@@ -8,6 +8,11 @@ builder.queryType({
       },
       resolve: (_parent, { name }) => name,
     }),
+    viewer: t.field({
+      type: 'Viewer',
+      nullable: true,
+      resolve: (_, {}, ctx) => ctx.viewer,
+    }),
     searchCountry: t.string({
       args: {
         search: t.arg.string({ required: true }),

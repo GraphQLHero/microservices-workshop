@@ -5,6 +5,8 @@
     "PORT",
     "OPENAI_API_KEY",
     "COUNTRY_GUESSER_URL",
+    "AUTH_URL",
+    "JWT_SECRET",
     "NEXT_PUBLIC_API_GATEWAY_URL"
   ],
   "pipeline": {
@@ -14,6 +16,12 @@
     },
     "test": {
       "outputs": ["coverage/**"],
+      "dependsOn": []
+    },
+    "start": {
+      "dependsOn": ["^build"]
+    },
+    "e2e:test": {
       "dependsOn": []
     },
     "lint": {},

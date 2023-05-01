@@ -1,0 +1,26 @@
+name: E2E CI
+on: [deployment_status]
+jobs:
+  auth-e2e:
+    if: github.event_name == 'deployment_status' && github.event.deployment_status.state == 'success' && contains(github.event.deployment_status.target_url, 'microservices-workshop-auth')
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v3
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 8.3.1
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          cache: 'pnpm'
+      - name: Install dependencies
+        run: pnpm install
+      - name: Run tests
+        run: |
+          echo $AUTH_URL
+          pnpm e2e:test
+        env:
+          AUTH_URL: ${{ github.event.deployment_status.target_url }}
+          JWT_SECRET: ${{ secrets.JWT_SECRET }}

@@ -1,6 +1,9 @@
 // https://beta.nextjs.org/docs/routing/route-handlers
 import { createYoga } from 'graphql-yoga';
+import { useCookies } from '@whatwg-node/server-plugin-cookies';
 import schema from '../../graphql/schema';
+import { NextRequest } from 'next/server';
+import getViewerFromRequest, { Viewer } from '../../auth/getViewerFromRequest';
 
 const yoga = createYoga({
   graphqlEndpoint: '/graphql',
@@ -24,6 +27,9 @@ const yoga = createYoga({
       }
     `,
   },
+  // This is not a React hook, it's a GraphQL plugin
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  plugins: [useCookies()],
 });
 
 const handleRequest = async (request: Request, context: any) => {
@@ -52,8 +58,11 @@ export async function GET(request: Request) {
 }
 
 // Executes GraphQL requests
-export async function POST(request: Request) {
+export async function POST(request: NextRequest) {
   // The GraphQL context is passed to all resolvers
-  const context = {};
+  const context: { viewer: Viewer | null } = {
+    viewer: await getViewerFromRequest(request),
+  };
+
   return handleRequest(request, context);
 }
