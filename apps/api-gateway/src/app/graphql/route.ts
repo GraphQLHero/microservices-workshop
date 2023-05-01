@@ -8,14 +8,7 @@ import getViewerFromRequest, { Viewer } from '../../auth/getViewerFromRequest';
 const yoga = createYoga({
   graphqlEndpoint: '/graphql',
   cors: {
-    origin: [
-      // Frontend [Dev]
-      'http://localhost:3002',
-      // GraphiQL [Dev]
-      'http://localhost:3004',
-      // Frontend [Prod]
-      'https://microservices-workshop-frontend.vercel.app',
-    ],
+    origin: '*',
     credentials: true,
     methods: ['HEAD', 'GET', 'POST'],
   },
