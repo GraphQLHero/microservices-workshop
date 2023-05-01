@@ -54,7 +54,7 @@ export default function NavBar() {
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
           {viewer ? (
             <div>
-              <p>Hello {viewer.name}</p>
+              <p className="text-gray-900 text-lg">Hello {viewer.name}</p>
               <Link
                 href={'/logout'}
                 className="text-sm font-semibold leading-6 text-gray-900"
