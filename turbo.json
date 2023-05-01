@@ -18,6 +18,12 @@
       "outputs": ["coverage/**"],
       "dependsOn": []
     },
+    "start": {
+      "dependsOn": ["^build"]
+    },
+    "e2e:test": {
+      "dependsOn": []
+    },
     "lint": {},
     "dev": {
       "cache": false,

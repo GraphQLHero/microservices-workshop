@@ -11,7 +11,7 @@ const getFlagEmoji = (countryCode: string) => {
   return String.fromCodePoint(...codePoints);
 };
 
-export default function Home() {
+export default function Page() {
   const [countryCode, setCountryCode] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   return (

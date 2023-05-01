@@ -27,7 +27,8 @@ const yoga = createYoga({
       }
     `,
   },
-  // eslint-disable-next-line
+  // This is not a React hook, it's a GraphQL plugin
+  // eslint-disable-next-line react-hooks/rules-of-hooks
   plugins: [useCookies()],
 });
 

@@ -1,6 +1,7 @@
-import { loadEnvConfig } from '@next/env';
-loadEnvConfig(process.cwd());
+// import { loadEnvConfig } from '@next/env';
+// loadEnvConfig(process.cwd());
 import jsonwebtoken from 'jsonwebtoken';
+import fetch from 'cross-fetch';
 
 describe('e2e', () => {
   it('does not verify a random token', async () => {

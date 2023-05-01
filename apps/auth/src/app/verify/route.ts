@@ -3,6 +3,7 @@ import jsonwebtoken from 'jsonwebtoken';
 
 export async function POST(request: Request) {
   const body = (await request.json()) as { token: string };
+
   console.log({ body });
   try {
     const token = body.token;

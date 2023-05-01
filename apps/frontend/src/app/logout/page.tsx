@@ -5,7 +5,14 @@ import { useEffect } from 'react';
 export default function Logout() {
   const logout = async () => {
     const data = await fetchApiGateway(
-      `mutation { logout(input: {}) { errorCode } }`
+      /* GraphQL */
+      `
+        mutation {
+          logout(input: {}) {
+            errorCode
+          }
+        }
+      `
     );
     if (data?.logout?.errorCode) {
       alert(data.logout.errorCode);
