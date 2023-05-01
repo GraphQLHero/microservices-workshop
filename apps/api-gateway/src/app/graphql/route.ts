@@ -49,8 +49,6 @@ const handleRequest = async (request: NextRequest, context: GraphQLContext) => {
     console.log('Setting session cookie: ', sessionCookie);
     response.cookies.set(SESSION_COOKIE, sessionCookie, {
       httpOnly: true,
-      domain:
-        process.env.NODE_ENV === 'development' ? 'localhost' : 'vercel.app',
       expires: new Date(Date.now() + 24 * 60 * 60 * 1000),
       secure: true,
       sameSite: 'none',
