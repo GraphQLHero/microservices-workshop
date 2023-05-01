@@ -20,8 +20,8 @@ importers:
         specifier: ^3.39.0
         version: 3.39.0(@pothos/core@3.28.0)(graphql@16.6.0)
       '@whatwg-node/server-plugin-cookies':
-        specifier: ^0.0.3
-        version: 0.0.3(@whatwg-node/server@0.7.5)
+        specifier: ^0.0.5
+        version: 0.0.5(@whatwg-node/server@0.7.5)
       graphql:
         specifier: ^16.6.0
         version: 16.6.0
@@ -1713,8 +1713,19 @@ packages:
       eslint-visitor-keys: 3.3.0
     dev: false
 
+  /@whatwg-node/cookie-store@0.0.1:
+    resolution: {integrity: sha512-uoti8QU5xd+X+9PULOGpPpOqPDdwkz+ukMc4kyQG1GwXeKVGktr4FSllr6dBotjOjNVPSBPpmj5V6zrUdDcLaw==}
+    dependencies:
+      '@whatwg-node/events': 0.0.3
+      tslib: 2.5.0
+    dev: false
+
   /@whatwg-node/events@0.0.2:
     resolution: {integrity: sha512-WKj/lI4QjnLuPrim0cfO7i+HsDSXHxNv1y0CrJhdntuO3hxWZmnXCwNDnwOvry11OjRin6cgWNF+j/9Pn8TN4w==}
+    dev: false
+
+  /@whatwg-node/events@0.0.3:
+    resolution: {integrity: sha512-IqnKIDWfXBJkvy/k6tzskWTc2NK3LcqHlb+KHGCrjOCH4jfQckRX0NAiIcC/vIqQkzLYw2r2CTSwAxcrtcD6lA==}
     dev: false
 
   /@whatwg-node/fetch@0.8.2(@types/node@18.15.0):
@@ -1729,13 +1740,13 @@ packages:
       - '@types/node'
     dev: false
 
-  /@whatwg-node/fetch@0.8.4:
-    resolution: {integrity: sha512-xK0NGWt49P+JmsdfN+8zmHzZoscENrV0KL1SyyncvWkc6vbFmSqGSpvItEBuhj1PAfTGFEUpyiRMCsut2hLy/Q==}
+  /@whatwg-node/fetch@0.8.8:
+    resolution: {integrity: sha512-CdcjGC2vdKhc13KKxgsc6/616BQ7ooDIgPeTuAiE8qfCnS0mGzcfCOoZXypQSz73nxI+GWc7ZReIAVhxoE1KCg==}
     dependencies:
       '@peculiar/webcrypto': 1.4.1
-      '@whatwg-node/node-fetch': 0.3.4
+      '@whatwg-node/node-fetch': 0.3.6
       busboy: 1.6.0
-      urlpattern-polyfill: 6.0.2
+      urlpattern-polyfill: 8.0.2
       web-streams-polyfill: 3.2.1
     dev: false
 
@@ -1752,22 +1763,22 @@ packages:
       tslib: 2.5.0
     dev: false
 
-  /@whatwg-node/node-fetch@0.3.4:
-    resolution: {integrity: sha512-gP1MN6DiHVbhkLWH1eCELhE2ZtLRxb+HRKu4eYze1Tijxz0uT1T2kk3lseZp94txzxCfbxGFU0jsWkxNdH3EXA==}
+  /@whatwg-node/node-fetch@0.3.6:
+    resolution: {integrity: sha512-w9wKgDO4C95qnXZRwZTfCmLWqyRnooGjcIwG0wADWjw9/HN0p7dtvtgSvItZtUyNteEvgTrd8QojNEqV6DAGTA==}
     dependencies:
-      '@whatwg-node/events': 0.0.2
+      '@whatwg-node/events': 0.0.3
       busboy: 1.6.0
       fast-querystring: 1.1.1
       fast-url-parser: 1.1.3
       tslib: 2.5.0
     dev: false
 
-  /@whatwg-node/server-plugin-cookies@0.0.3(@whatwg-node/server@0.7.5):
-    resolution: {integrity: sha512-GYZLbI+7ML/0X7+RNdTkSr5cdXpzlbIcdRYsY4b+uAD6NMCStMPDtVqOmTzZfuDahnwQlOEJZj0/GViUQK9jeg==}
+  /@whatwg-node/server-plugin-cookies@0.0.5(@whatwg-node/server@0.7.5):
+    resolution: {integrity: sha512-Gn61cDeNCRbDaCdp9dKoYmY0RXgN3cmSkpyw6dpBiqSbkXoN6xEeH3EcEmXs9xqDnCMxlk3pM2Xh1TBJi0TU8w==}
     peerDependencies:
       '@whatwg-node/server': ^0.7.5
     dependencies:
-      '@whatwg-node/events': 0.0.2
+      '@whatwg-node/cookie-store': 0.0.1
       '@whatwg-node/server': 0.7.5
       tslib: 2.5.0
     dev: false
@@ -1784,7 +1795,7 @@ packages:
   /@whatwg-node/server@0.7.5:
     resolution: {integrity: sha512-xTDJdPqr/wULxW3mGXQXD92SRXUm6jwQxqIvyHG17dykRTd21HuCaS2ggBn5lSAM/sYjjrT+OYv3fXbtS4+Mjw==}
     dependencies:
-      '@whatwg-node/fetch': 0.8.4
+      '@whatwg-node/fetch': 0.8.8
       tslib: 2.5.0
     dev: false
 
@@ -7005,6 +7016,10 @@ packages:
     resolution: {integrity: sha512-5vZjFlH9ofROmuWmXM9yj2wljYKgWstGwe8YTyiqM7hVum/g9LyCizPZtb3UqsuppVwety9QJmfc42VggLpTgg==}
     dependencies:
       braces: 3.0.2
+    dev: false
+
+  /urlpattern-polyfill@8.0.2:
+    resolution: {integrity: sha512-Qp95D4TPJl1kC9SKigDcqgyM2VDVO4RiJc2d4qe5GrYm+zbIQCWWKAFaJNQ4BhdFeDGwBmAxqJBwWSJDb9T3BQ==}
     dev: false
 
   /use@3.1.1:

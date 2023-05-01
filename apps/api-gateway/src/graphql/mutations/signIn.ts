@@ -41,14 +41,9 @@ builder.relayMutationField(
       const data = await response.json();
 
       // We set the jwt token in the cookies for our frontend
-      await ctx.request.cookieStore?.set({
-        name: SESSION_COOKIE,
-        domain: '',
-        expires: Date.now() + 24 * 60 * 60 * 1000,
-        secure: true,
-        sameSite: 'none',
-        value: data.token,
-      });
+      // /!\ We need sameSite=none and secure=true for the cookie to be set
+      // See `handleRequest`
+      await ctx.request?.cookieStore?.set(SESSION_COOKIE, data.token);
 
       return { errorCode: null };
     },
