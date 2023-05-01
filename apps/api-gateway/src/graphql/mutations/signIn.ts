@@ -1,3 +1,4 @@
+import { SESSION_COOKIE } from '../../config';
 import builder from '../builder';
 
 enum SignInErrorCode {
@@ -32,7 +33,6 @@ builder.relayMutationField(
           password: input.password,
         }),
       });
-
       if (response.status === 401) {
         return { errorCode: SignInErrorCode.INVALID_CREDENTIALS };
       }
@@ -42,7 +42,7 @@ builder.relayMutationField(
 
       // We set the jwt token in the cookies for our frontend
       const jwt = data.token;
-      await ctx.request.cookieStore?.set('jwt', jwt);
+      await ctx.request.cookieStore?.set(SESSION_COOKIE, jwt);
 
       return { errorCode: null };
     },

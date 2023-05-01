@@ -1,4 +1,5 @@
 import { NextRequest } from 'next/server';
+import { SESSION_COOKIE } from '../config';
 
 export type Viewer = {
   id: string;
@@ -10,7 +11,7 @@ export type Viewer = {
 export default async function getViewerFromRequest(
   request: NextRequest
 ): Promise<Viewer | null> {
-  const jwt = request.cookies.get('jwt');
+  const jwt = request.cookies.get(SESSION_COOKIE);
   if (!jwt?.value) {
     console.info('No JWT found in cookies');
     return null;

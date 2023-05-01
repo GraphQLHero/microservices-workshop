@@ -1,3 +1,4 @@
+import { SESSION_COOKIE } from '../../config';
 import builder from '../builder';
 
 enum LogoutErrorCode {
@@ -18,7 +19,7 @@ builder.relayMutationField(
   },
   {
     resolve: async (root, { input }, ctx) => {
-      await ctx.request.cookieStore?.delete('jwt');
+      await ctx.request.cookieStore?.delete(SESSION_COOKIE);
 
       return { errorCode: null };
     },

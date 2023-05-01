@@ -58,7 +58,7 @@ export default function Home() {
             type="submit"
             className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
           >
-            Save
+            Rechercher
           </button>
         </div>
         <div className="mt-6 flex items-center justify-end gap-x-6">
@@ -67,7 +67,9 @@ export default function Home() {
         </div>
       </form>
       <p>
-        Built With{' '}
+        Développé avec{' '}
+        <NewTabLink href="https://openai.com/">OpenAI</NewTabLink> +{' '}
+        <NewTabLink href="https://graphqlhero.com">GraphQL</NewTabLink> +{' '}
         <NewTabLink href="https://turbo.build/repo">Turborepo</NewTabLink> +{' '}
         <NewTabLink href="https://nextjs.org/">Next.js</NewTabLink>
       </p>
