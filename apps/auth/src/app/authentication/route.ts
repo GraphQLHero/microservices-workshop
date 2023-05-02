@@ -1,19 +1,21 @@
 import crypto from 'crypto';
 import { NextResponse } from 'next/server';
 import jsonwebtoken from 'jsonwebtoken';
+import { components } from '../../__generated__/openapi';
 
-type AuthenticationBody = {
-  username?: string;
-  password?: string;
-};
+type AuthInput = components['schemas']['AuthInput'];
+type AuthPayload = components['schemas']['AuthPayload'];
 
 export async function POST(request: Request) {
-  // TODO let's save/get a user to the database from the body
-  const body = (await request.json()) as AuthenticationBody;
-  console.log({ body });
+  const body = (await request.json()) as AuthInput;
 
+  // In a real application, do something to fetch the user
+  if (!body.username || !body.password) {
+    return new NextResponse(`Invalid credentials`, { status: 400 });
+  }
+
+  // Here we just generate a token for the given data
   const email = body.username;
-
   const token = jsonwebtoken.sign(
     {
       id: crypto.randomUUID(),
@@ -25,5 +27,6 @@ export async function POST(request: Request) {
     { expiresIn: '3h' }
   );
 
-  return NextResponse.json({ token });
+  const payload: AuthPayload = { token };
+  return NextResponse.json(payload);
 }
