@@ -1,19 +1,25 @@
+import crypto from 'crypto';
 import { NextResponse } from 'next/server';
 import jsonwebtoken from 'jsonwebtoken';
 
+type AuthenticationBody = {
+  username?: string;
+  password?: string;
+};
+
 export async function POST(request: Request) {
   // TODO let's save/get a user to the database from the body
-  const body = await request.json();
+  const body = (await request.json()) as AuthenticationBody;
   console.log({ body });
 
-  const email = body.email;
+  const email = body.username;
 
   const token = jsonwebtoken.sign(
     {
-      id: '1234567890',
-      name: 'John Doe',
+      id: crypto.randomUUID(),
+      name: email?.split('@')[0],
       email,
-      admin: true,
+      admin: false,
     },
     process.env.JWT_SECRET as string,
     { expiresIn: '3h' }

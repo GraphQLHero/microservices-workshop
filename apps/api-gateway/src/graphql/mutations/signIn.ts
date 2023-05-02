@@ -37,8 +37,10 @@ builder.relayMutationField(
         return { errorCode: SignInErrorCode.INVALID_CREDENTIALS };
       }
 
-      // TODO need to add types
-      const data = await response.json();
+      const data = (await response.json()) as { token?: string };
+      if (!data.token) {
+        return { errorCode: SignInErrorCode.INVALID_CREDENTIALS };
+      }
 
       // We set the jwt token in the cookies for our frontend
       // /!\ We need sameSite=none and secure=true for the cookie to be set
