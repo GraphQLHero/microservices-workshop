@@ -1,0 +1,101 @@
+openapi: 3.0.3
+info:
+  title: Auth microservice - OpenAPI 3.0
+  description: |-
+    This is an OpenAPI 3.0 specification.  You can find out more about
+    Swagger at [https://swagger.io](https://swagger.io).
+  version: 'v1'
+paths:
+  /authentication:
+    post:
+      summary: Authenticate a user from it's credentials
+      requestBody:
+        description: User credentials
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AuthInput'
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthPayload'
+        '400':
+          description: Invalid credentials provided
+  /verify:
+    post:
+      summary: Verify and decode a token
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VerifyInput'
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthPayload'
+        '401':
+          description: Invalid token provided
+components:
+  schemas:
+    AuthInput:
+      type: object
+      required:
+        - username
+        - password
+      properties:
+        username:
+          type: string
+          example: toto@gmail.com
+        password:
+          type: string
+          example: vivegraphql
+    AuthPayload:
+      type: object
+      properties:
+        token:
+          type: string
+          format: jwt
+    AuthenticatedUserJwt:
+      type: object
+      required:
+        - id
+        - name
+        - email
+        - admin
+      properties:
+        id:
+          type: string
+          format: uuid
+          example: 123e4567-e89b-12d3-a456-426614174000
+        name:
+          type: string
+          example: toto
+        email:
+          type: string
+          format: email
+          example: toto@gmail.com
+        admin:
+          type: boolean
+          example: false
+    VerifyInput:
+      type: object
+      required:
+        - token
+      properties:
+        token:
+          type: string
+          format: jwt
+          example: xxxxx
+    VerifyPayload:
+      type: object
+      properties:
+        decoded:
+          $ref: '#/components/schemas/AuthenticatedUserJwt'

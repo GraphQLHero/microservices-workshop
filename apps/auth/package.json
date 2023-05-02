@@ -9,6 +9,7 @@
     "lint": "next lint",
     "test": "jest --detectOpenHandles --passWithNoTests '!./__tests__/e2e.test.ts'",
     "start": "next start -p 3005",
+    "openapi": "npx openapi-typescript src/openapi.yaml --output src/__generated__/openapi.ts && npx openapi-typescript src/openapi.yaml --output ../api-gateway/src/__generated__/auth.ts",
     "e2e:test": "jest --detectOpenHandles './__tests__/e2e.test.ts'"
   },
   "dependencies": {

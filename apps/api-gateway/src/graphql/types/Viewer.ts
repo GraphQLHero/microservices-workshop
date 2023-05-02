@@ -6,5 +6,6 @@ builder.objectType('Viewer', {
     id: t.exposeID('id'),
     email: t.exposeString('email'),
     name: t.exposeString('name'),
+    admin: t.exposeBoolean('admin'),
   }),
 });
