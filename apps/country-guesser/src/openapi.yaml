@@ -1,0 +1,41 @@
+openapi: 3.0.3
+info:
+  title: Country guesser
+  description: |-
+    This is an OpenAPI 3.0 specification.  You can find out more about
+    Swagger at [https://swagger.io](https://swagger.io).
+  version: 'v1'
+servers:
+  - url: 'https://microservices-workshop-country-guesser.vercel.app'
+    description: Production server
+  - url: 'http://localhost:3003'
+    description: Local development server
+paths:
+  /search/{search}:
+    get:
+      summary: Search a country from a text
+      parameters:
+        - in: path
+          name: search
+          description: Text to search
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchPayload'
+        '404':
+          description: Not found
+components:
+  schemas:
+    SearchPayload:
+      type: object
+      properties:
+        search:
+          type: string
+        value:
+          type: string
