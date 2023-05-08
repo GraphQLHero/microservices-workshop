@@ -1,10 +1,15 @@
 openapi: 3.0.3
 info:
-  title: Auth microservice - OpenAPI 3.0
+  title: Auth
   description: |-
     This is an OpenAPI 3.0 specification.  You can find out more about
     Swagger at [https://swagger.io](https://swagger.io).
   version: 'v1'
+servers:
+  - url: 'https://microservices-workshop-auth.vercel.app'
+    description: Production server
+  - url: 'http://localhost:3005'
+    description: Local development server
 paths:
   /authentication:
     post:
