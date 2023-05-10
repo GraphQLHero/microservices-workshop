@@ -10,23 +10,23 @@
     "start": "next start "
   },
   "dependencies": {
-    "@headlessui/react": "^1.7.13",
-    "@heroicons/react": "^2.0.17",
+    "@headlessui/react": "^1.7.14",
+    "@heroicons/react": "^2.0.18",
     "@tailwindcss/forms": "^0.5.3",
     "autoprefixer": "^10.4.14",
     "logger": "workspace:*",
-    "next": "^13.2.4",
-    "postcss": "^8.4.21",
+    "next": "^13.4.1",
+    "postcss": "^8.4.23",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "tailwindcss": "^3.3.1",
+    "tailwindcss": "^3.3.2",
     "ui": "workspace:*"
   },
   "devDependencies": {
-    "@types/jest": "^29.4.0",
-    "@types/node": "^18.15.0",
-    "@types/react": "^18.0.28",
-    "@types/react-dom": "^18.0.11",
+    "@types/jest": "^29.5.1",
+    "@types/node": "^18.16.6",
+    "@types/react": "^18.2.6",
+    "@types/react-dom": "^18.2.4",
     "eslint-config-custom": "workspace:*",
     "tsconfig": "workspace:*",
     "typescript": "^4.9.5"

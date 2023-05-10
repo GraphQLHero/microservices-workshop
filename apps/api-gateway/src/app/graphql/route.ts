@@ -45,12 +45,9 @@ const handleRequest = async (request: NextRequest, context: GraphQLContext) => {
   const sessionCookie = (
     await context.request?.cookieStore?.get(SESSION_COOKIE)
   )?.value;
-  if (
-    sessionCookie &&
-    request.cookies.get(SESSION_COOKIE)?.value !== sessionCookie
-  ) {
+  if (request.cookies.get(SESSION_COOKIE)?.value !== sessionCookie) {
     console.log('Setting session cookie: ', sessionCookie);
-    response.cookies.set(SESSION_COOKIE, sessionCookie, {
+    response.cookies.set(SESSION_COOKIE, sessionCookie ?? '', {
       httpOnly: true,
       expires: new Date(Date.now() + 24 * 60 * 60 * 1000),
       secure: true,
