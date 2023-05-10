@@ -6,6 +6,7 @@
     "OPENAI_API_KEY",
     "COUNTRY_GUESSER_URL",
     "AUTH_URL",
+    "TOP_SEARCH_URL",
     "JWT_SECRET",
     "NEXT_PUBLIC_API_GATEWAY_URL"
   ],
@@ -24,6 +25,7 @@
     "e2e:test": {
       "dependsOn": []
     },
+    "openapi": {},
     "lint": {},
     "dev": {
       "cache": false,

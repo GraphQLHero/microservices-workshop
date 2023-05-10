@@ -1,20 +1,19 @@
 {
-  "name": "country-guesser",
+  "name": "top-search",
   "version": "0.0.0",
   "private": true,
   "scripts": {
     "build": "next build",
     "clean": "rm -rf .next",
-    "dev": "next dev -p 3003",
+    "dev": "next dev -p 3006",
     "lint": "next lint",
-    "test": "jest --detectOpenHandles",
-    "openapi": "npx openapi-typescript src/openapi.yaml --output src/__generated__/openapi.ts && npx openapi-typescript src/openapi.yaml --output ../api-gateway/src/__generated__/country-guesser.ts",
+    "test": "jest --detectOpenHandles --passWithNoTests",
+    "openapi": "npx openapi-typescript src/openapi.yaml --output src/__generated__/openapi.ts && npx openapi-typescript src/openapi.yaml --output ../api-gateway/src/__generated__/top-search.ts",
     "start": "next start "
   },
   "dependencies": {
     "logger": "workspace:*",
-    "next": "^13.4.1",
-    "openai": "^3.2.1"
+    "next": "^13.4.1"
   },
   "devDependencies": {
     "@types/jest": "^29.5.1",

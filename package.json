@@ -8,6 +8,7 @@
     "lint": "turbo run lint",
     "test": "turbo run test",
     "start": "turbo run start",
+    "openapi": "turbo run openapi",
     "e2e:test": "turbo run e2e:test"
   },
   "devDependencies": {

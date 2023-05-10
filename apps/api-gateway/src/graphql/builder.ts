@@ -11,7 +11,14 @@ export type GraphQLContext = {
 
 const builder = new SchemaBuilder<{
   Context: GraphQLContext;
-  Objects: { Viewer: Viewer };
+  Objects: {
+    Viewer: Viewer;
+    TopSearch: {
+      country: string;
+      value: number;
+      percentage: number;
+    };
+  };
 }>({
   plugins: [RelayPlugin],
   relayOptions: {

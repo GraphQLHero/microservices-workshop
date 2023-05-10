@@ -1,0 +1,60 @@
+openapi: 3.0.3
+info:
+  title: Top search
+  description: |-
+    This is an OpenAPI 3.0 specification.  You can find out more about
+    Swagger at [https://swagger.io](https://swagger.io).
+  version: 'v1'
+servers:
+  - url: 'https://microservices-workshop-top-search.vercel.app'
+    description: Production server
+  - url: 'http://localhost:3006'
+    description: Local development server
+paths:
+  /top:
+    get:
+      summary: List top searches
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TopSearchPayload'
+        '404':
+          description: Not found
+  /users/{userId}/top:
+    get:
+      summary: List top searches of a user
+      parameters:
+        - in: path
+          name: userId
+          description: The user to filter by
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TopSearchPayload'
+        '404':
+          description: Not found
+components:
+  schemas:
+    TopSearchPayload:
+      type: array
+      items:
+        required:
+          - country
+          - value
+          - percentage
+        properties:
+          country:
+            type: string
+          value:
+            type: number
+          percentage:
+            type: number
