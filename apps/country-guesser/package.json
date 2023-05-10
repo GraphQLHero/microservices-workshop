@@ -12,12 +12,12 @@
   },
   "dependencies": {
     "logger": "workspace:*",
-    "next": "^13.2.4",
+    "next": "^13.4.1",
     "openai": "^3.2.1"
   },
   "devDependencies": {
-    "@types/jest": "^29.4.0",
-    "@types/node": "^18.15.0",
+    "@types/jest": "^29.5.1",
+    "@types/node": "^18.16.6",
     "eslint-config-custom": "workspace:*",
     "jest": "^29.5.0",
     "jest-presets": "workspace:*",
