@@ -13,6 +13,7 @@
     "@headlessui/react": "^1.7.14",
     "@heroicons/react": "^2.0.18",
     "@tailwindcss/forms": "^0.5.3",
+    "@tremor/react": "^2.4.1",
     "autoprefixer": "^10.4.14",
     "logger": "workspace:*",
     "next": "^13.4.1",

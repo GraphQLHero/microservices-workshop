@@ -2,21 +2,18 @@
 import { useState } from 'react';
 import fetchApiGateway from '../fetchApiGateway';
 import { NewTabLink } from 'ui';
-
-const getFlagEmoji = (countryCode: string) => {
-  const codePoints = countryCode
-    .toUpperCase()
-    .split('')
-    .map((char) => 127397 + char.charCodeAt(0));
-  return String.fromCodePoint(...codePoints);
-};
+import DisplayTopSearch from '@/components/DisplayTopSearch';
+import getFlagEmoji from '@/utils/getFlagEmoji';
 
 export default function Page() {
   const [countryCode, setCountryCode] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   return (
-    <main className="flex flex-col min-h-full items-center justify-between p-24">
+    <main className="flex flex-col min-h-fit items-center justify-between p-24">
+      <DisplayTopSearch />
+
       <form
+        className="mt-20"
         onSubmit={async (
           e: React.FormEvent<HTMLFormElement> & {
             target: { search: { value: string } };

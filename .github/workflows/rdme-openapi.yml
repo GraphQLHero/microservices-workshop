@@ -16,12 +16,15 @@ jobs:
     steps:
       - name: Check out repo 📚
         uses: actions/checkout@v3
-
-      - name: Run 1 `openapi` command 🚀
+      - name: Upload auth openapi.yaml
         uses: readmeio/rdme@v8
         with:
           rdme: openapi apps/auth/src/openapi.yaml --key=${{ secrets.README_API_KEY }} --id=6458d2b16d5d3b001aaf46bb
-      - name: Run 2 `openapi` command 🚀
+      - name: Upload country guesser openapi.yaml
         uses: readmeio/rdme@v8
         with:
           rdme: openapi apps/country-guesser/src/openapi.yaml --key=${{ secrets.README_API_KEY }} --id=6458dcd0e64262001278f121
+      - name: Upload top search openapi.yaml
+        uses: readmeio/rdme@v8
+        with:
+          rdme: openapi apps/top-search/src/openapi.yaml --key=${{ secrets.README_API_KEY }} --id=645b582b6e8a3009c6379319
